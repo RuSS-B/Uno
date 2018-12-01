@@ -1,5 +1,7 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <h1>About the project</h1>
+
+    <p>This is just fun project made by me, Russ B.</p>
   </div>
 </template>

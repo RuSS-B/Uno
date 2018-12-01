@@ -1,13 +1,13 @@
 <template>
   <div>
     <v-layout row justify-space-between mb-3>
-      <v-flex xs6 sm4>
+      <v-flex xs6 sm4 lg2>
         <v-btn :to="{name: 'home'}" block round color="primary" dark>
           <v-icon>arrow_back</v-icon>
           Main menu
         </v-btn>
       </v-flex>
-      <v-flex xs6 sm4>
+      <v-flex xs6 sm4 lg2>
         <v-btn @click="dialog = true" block round color="primary" dark>
           <v-icon>add_location</v-icon>
           Add round results
@@ -17,6 +17,7 @@
 
     <v-data-table
         :headers="headers"
+        :pagination="{rowsPerPage: -1}"
         :items="rounds"
         :loading="!loaded"
         class="elevation-1"

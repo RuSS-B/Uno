@@ -2,16 +2,14 @@
   <v-app>
     <v-toolbar app>
       <v-toolbar-title class="headline text-uppercase">
-        <span>UNO</span>
+        <span><router-link to="/">UNO</router-link></span>
         <span class="font-weight-light">Fun project by RuSS</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn
+      <v-btn to="/about"
         flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
       >
-        <span class="mr-2">Latest Release</span>
+        <span class="mr-2">About</span>
       </v-btn>
     </v-toolbar>
 

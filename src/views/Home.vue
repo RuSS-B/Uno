@@ -11,15 +11,18 @@
           <v-card>
             <v-card-title class="headline">Lets collect some data about the new game!</v-card-title>
             <v-card-text>
-              <v-flex v-for="(player, idx) in players" :key="idx">
-                <v-text-field
-                    :label="'Player #' + (idx+1)"
-                    box
-                    v-model="player.name"
-                    append-outer-icon="clear"
-                    @click:append-outer="removePlayer(idx)"
-                ></v-text-field>
-              </v-flex>
+              <v-form ref="form" v-model="valid" lazy-validation>
+                <v-flex v-for="(player, idx) in players" :key="idx">
+                  <v-text-field
+                      :rules="rules"
+                      :label="'Player #' + (idx+1)"
+                      box
+                      v-model="player.name"
+                      append-outer-icon="clear"
+                      @click:append-outer="removePlayer(idx)"
+                  ></v-text-field>
+                </v-flex>
+              </v-form>
               <v-flex xs12 sm6>
               <v-btn block @click="addPlayer">Add more players</v-btn>
               </v-flex>
@@ -41,6 +44,10 @@
 export default {
   data () {
     return {
+      valid: true,
+      rules: [
+        v => !!v || 'The value is required'
+      ],
       dialog: false,
       players: [
         { name: '', total: 0 },
@@ -58,6 +65,10 @@ export default {
       this.players.splice(index, 1)
     },
     newGame () {
+      if (!this.$refs.form.validate()) {
+        return false
+      }
+
       this.dialog = false
 
       this.$store.commit('newGame', this.players)
